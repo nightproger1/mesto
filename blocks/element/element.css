@@ -1,0 +1,7 @@
+.element {
+  min-height: 361px;
+  max-width: 282px;
+  list-style: none;
+  background-color: #fff;
+  border-radius: 10px;
+}

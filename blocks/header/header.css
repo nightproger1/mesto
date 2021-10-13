@@ -1,0 +1,13 @@
+.header {
+  margin: 2.8125rem auto 2.5rem;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid rgba(84, 84, 84, .7);
+}
+
+@media screen and (max-width:425px) {
+  .header {
+    margin: 1.75rem auto 2.625rem;
+    max-width: 380px;
+  }
+}
