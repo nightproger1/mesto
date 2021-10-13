@@ -6,7 +6,8 @@
   background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
-  align-self: center;
+  -ms-grid-row-align: center;
+      align-self: center;
   border: none;
   transition: all ease .2s;
   cursor: pointer;
