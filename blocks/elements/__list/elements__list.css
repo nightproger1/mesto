@@ -23,7 +23,7 @@
 
 @media screen and (max-width: 625px) {
   .elements__list {
-    -ms-grid-columns: 282px ;
+    -ms-grid-columns: 282px;
     grid-template-columns: repeat(1, 282px);
   }
 }
