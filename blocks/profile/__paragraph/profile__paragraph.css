@@ -1,4 +1,8 @@
 .profile__paragraph {
+  text-overflow: ellipsis;
+  max-width: 336px;
+  overflow: hidden;
+  white-space: nowrap;
   margin: 1rem 0 0;
   font-size: 1.125rem;
   line-height: 1.375rem;
@@ -15,6 +19,7 @@
 
 @media screen and (max-width: 500px) {
   .profile__paragraph {
+    max-width: 282px;
     font-size: 0.875rem;
     line-height: 1.0625rem;
   }

@@ -1,6 +1,6 @@
 // Находим форму в DOM
 let popup = document.querySelector('.popup');
-let formElement = document.querySelector('.popup__profile');
+let formElement = document.querySelector('.popup__form');
 // Находим поля формы в DOM
 let nameInput = document.querySelector('.popup__input_user_name');
 let jobInput = document.querySelector('.popup__input_user_profession');
@@ -24,6 +24,7 @@ function formSubmitHandler (evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   titleInput.textContent = nameInput.value;
   paragraphInput.textContent = jobInput.value;
+  closeForm();
 }
 
 // Прикрепляем обработчик к форме:
