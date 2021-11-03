@@ -7,4 +7,10 @@
      object-fit: cover;
   -o-object-position: top;
      object-position: top;
+  transition: all ease .3s;
+  cursor: pointer;
+}
+
+.element__image:hover {
+  opacity: .8;
 }
