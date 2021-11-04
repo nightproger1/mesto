@@ -1,6 +1,6 @@
 // edit popup
 const popupEdit = document.getElementById('edit'); //Уважаемый ревьювер, я использую getElementById, потому что он меньше нагружает процесс при компиляции, чем querySelector
-const formElement = popupEdit.querySelector('.popup__form');
+const profileForm = popupEdit.querySelector('.popup__form');
 const nameInput = document.querySelector('.popup__input_user_name');
 const jobInput = document.querySelector('.popup__input_user_profession');
 const popupEditOpen = document.querySelector('.profile__edit-btn');
@@ -74,7 +74,7 @@ function createCard(item) {
     imageDescription.textContent = item.name;
     imageEnlarged.src = item.link;
     imageEnlarged.alt = item.name;
-    openCardForm(popupEnlarged);
+    openForm(popupEnlarged);
   });
 
   cardTitle.textContent = item.name;
@@ -91,14 +91,14 @@ initialCards.forEach((item) => {
   renderCard(item);
 });
 
-function openCardForm(popup) {
+function openForm(popup) {
   popup.classList.add('popup_active');
 }
 
 function openProfileForm(editPopup) {
   nameInput.value = titleInput.textContent;
   jobInput.value = paragraphInput.textContent;
-  openCardForm(editPopup);
+  openForm(editPopup);
 }
 
 function closeForm(popup) {
@@ -114,7 +114,7 @@ function formEditSubmitHandler(evt) {
 }
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', formEditSubmitHandler);
+profileForm.addEventListener('submit', formEditSubmitHandler);
 
 function сardSubmitHandler(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
@@ -128,6 +128,6 @@ formLocation.addEventListener('submit', сardSubmitHandler);
 //открытие и закрытия попапов
 popupEditOpen.addEventListener('click', () => openProfileForm(popupEdit));
 popupEditclose.addEventListener('click', () => closeForm(popupEdit));
-popupLocationOpen.addEventListener('click', () => openCardForm(popupLocation));
+popupLocationOpen.addEventListener('click', () => openForm(popupLocation));
 popupLocationClose.addEventListener('click', () => closeForm(popupLocation));
 popupEnlargedClose.addEventListener('click', () => closeForm(popupEnlarged));
