@@ -1,12 +1,13 @@
 // edit popup
-const popupEdit = document.getElementById('edit'); //Уважаемый ревьювер, я использую getElementById, потому что он меньше нагружает процесс при компиляции, чем querySelector
-const profileForm = popupEdit.querySelector('.popup__form');
+const popupEdit = document.querySelector('.popup__edit');
+const formProfile = document.querySelector('.popup__form_edit');
 const nameInput = document.querySelector('.popup__input_user_name');
 const jobInput = document.querySelector('.popup__input_user_profession');
 const popupEditOpen = document.querySelector('.profile__edit-btn');
-const popupEditclose = popupEdit.querySelector('.popup__close');
+const popupEditClose = popupEdit.querySelector('.popup__close');
 const titleInput = document.querySelector('.profile__title');
 const paragraphInput = document.querySelector('.profile__paragraph');
+const editSaveBtn = popupEdit.querySelector('.popup__save-btn');
 
 //location popup
 const popupLocation = document.getElementById('location');
@@ -17,6 +18,7 @@ const locationInput = document.querySelector('.popup__input_location');
 const imagelInput = document.querySelector('.popup__input_image');
 const card = document.querySelector('.card').content.querySelector('.element');
 const elements = document.querySelector('.elements');
+const spanError = document.querySelector('.popup__error');
 
 //enlarged popup
 const popupEnlarged = document.getElementById('enlarged');
@@ -98,12 +100,14 @@ function openForm(popup) {
 function openProfileForm(editPopup) {
   nameInput.value = titleInput.textContent;
   jobInput.value = paragraphInput.textContent;
+  editSaveBtn.classList.remove('popup__save-btn_disabled');
   openForm(editPopup);
 }
 
 function closeForm(popup) {
   popup.classList.remove('popup_active');
 }
+
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 function formEditSubmitHandler(evt) {
@@ -114,7 +118,7 @@ function formEditSubmitHandler(evt) {
 }
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-profileForm.addEventListener('submit', formEditSubmitHandler);
+formProfile.addEventListener('submit', formEditSubmitHandler);
 
 function сardSubmitHandler(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
@@ -127,7 +131,24 @@ formLocation.addEventListener('submit', сardSubmitHandler);
 
 //открытие и закрытия попапов
 popupEditOpen.addEventListener('click', () => openProfileForm(popupEdit));
-popupEditclose.addEventListener('click', () => closeForm(popupEdit));
+popupEditClose.addEventListener('click', () => closeForm(popupEdit));
 popupLocationOpen.addEventListener('click', () => openForm(popupLocation));
 popupLocationClose.addEventListener('click', () => closeForm(popupLocation));
 popupEnlargedClose.addEventListener('click', () => closeForm(popupEnlarged));
+
+//закрытие по нажатию escape
+document.addEventListener('keydown', function(evt) {
+  if (evt.key === 'Escape') {
+    const isOpen = document.querySelector(".popup_active");
+      closeForm(isOpen);
+  }
+});
+
+//закрытие по нажатию на overlay
+document.addEventListener('click', function(evt) {
+  if(evt.target.classList.contains('popup')) {
+    const isOpen = document.querySelector('.popup_active');
+    closeForm(isOpen);
+  }
+});
+
