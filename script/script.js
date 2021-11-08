@@ -1,5 +1,5 @@
 // edit popup
-const popupEdit = document.querySelector('.popup__edit');
+const popupEdit = document.getElementById('edit');
 const formProfile = document.querySelector('.popup__form_edit');
 const nameInput = document.querySelector('.popup__input_user_name');
 const jobInput = document.querySelector('.popup__input_user_profession');
@@ -106,6 +106,7 @@ function openProfileForm(editPopup) {
 
 function closeForm(popup) {
   popup.classList.remove('popup_active');
+  resetError();
 }
 
 // Обработчик «отправки» формы, хотя пока
@@ -140,7 +141,7 @@ popupEnlargedClose.addEventListener('click', () => closeForm(popupEnlarged));
 document.addEventListener('keydown', function(evt) {
   if (evt.key === 'Escape') {
     const isOpen = document.querySelector(".popup_active");
-      closeForm(isOpen);
+    closeForm(isOpen);
   }
 });
 
@@ -152,3 +153,15 @@ document.addEventListener('click', function(evt) {
   }
 });
 
+//функция очистки ошибок при закрытии
+function resetError() {
+  const formError = document.querySelector('.popup__input_type_error');
+  const spanError = document.querySelector('.popup__error');
+  const inputError = document.querySelector('.popup__input')
+  if(spanError.textContent != '') {
+    spanError.textContent = '';
+  }
+  if(inputError.classList.contains('popup__input_type_error')) {
+    formError.classList.remove('popup__input_type_error');
+  }
+}
