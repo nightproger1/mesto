@@ -155,13 +155,28 @@ document.addEventListener('click', function(evt) {
 
 //функция очистки ошибок при закрытии
 function resetError() {
-  const formError = document.querySelector('.popup__input_type_error');
-  const spanError = document.querySelector('.popup__error');
-  const inputError = document.querySelector('.popup__input')
-  if(spanError.textContent != '') {
-    spanError.textContent = '';
+  const nameSpanError = document.getElementById('name-error');
+  const professioinSpanError = document.getElementById('proffession-error');
+
+  if(nameSpanError.textContent != '' && professioinSpanError.textContent != '') {
+    nameSpanError.textContent = '';
+    professioinSpanError.textContent = '';
   }
-  if(inputError.classList.contains('popup__input_type_error')) {
-    formError.classList.remove('popup__input_type_error');
+  else if(professioinSpanError.textContent != '') {
+    professioinSpanError.textContent = '';
+  }
+  else if (nameSpanError.textContent != '') {
+    nameSpanError.textContent = '';
+  }
+
+  if(nameInput.classList.contains('popup__input_type_error') && jobInput.classList.contains('popup__input_type_error')) {
+    nameInput.classList.remove('popup__input_type_error');
+    jobInput.classList.remove('popup__input_type_error');
+  }
+  else if(jobInput.classList.contains('popup__input_type_error')) {
+    jobInput.classList.remove('popup__input_type_error');
+  }
+  else if(nameInput.classList.contains('popup__input_type_error')) {
+    nameInput.classList.remove('popup__input_type_error');
   }
 }
