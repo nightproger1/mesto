@@ -26,6 +26,10 @@ const popupEnlargedClose = popupEnlarged.querySelector('.popup__close');
 const imageEnlarged = popupEnlarged.querySelector('.popup__img-enlarged');
 const imageDescription = popupEnlarged.querySelector('.popup__img-title');
 
+//взаимодействие с popup
+const popupAll = Array.from(document.querySelectorAll('.popup'));
+const popupContainer = document.querySelector('.popup__container');
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -106,7 +110,6 @@ function openProfileForm(editPopup) {
 
 function closeForm(popup) {
   popup.classList.remove('popup_active');
-  resetError();
 }
 
 // Обработчик «отправки» формы, хотя пока
@@ -130,6 +133,15 @@ function сardSubmitHandler(evt) {
 
 formLocation.addEventListener('submit', сardSubmitHandler);
 
+// функция закрытия popup по esc
+function closeFormESC(evt) {
+  popupAll.forEach((item) => {
+    if (item.classList.contains("popup_active") && evt.key === "Escape") {
+      closeForm(item);
+    }
+  });
+}
+
 //открытие и закрытия попапов
 popupEditOpen.addEventListener('click', () => openProfileForm(popupEdit));
 popupEditClose.addEventListener('click', () => closeForm(popupEdit));
@@ -137,46 +149,18 @@ popupLocationOpen.addEventListener('click', () => openForm(popupLocation));
 popupLocationClose.addEventListener('click', () => closeForm(popupLocation));
 popupEnlargedClose.addEventListener('click', () => closeForm(popupEnlarged));
 
-//закрытие по нажатию escape
-document.addEventListener('keydown', function(evt) {
-  if (evt.key === 'Escape') {
-    const isOpen = document.querySelector(".popup_active");
-    closeForm(isOpen);
-  }
+popupAll.forEach((item) => {
+  item.addEventListener("click", (evt) => {
+    closeForm(evt.target);
+  });
 });
 
-//закрытие по нажатию на overlay
-document.addEventListener('click', function(evt) {
-  if(evt.target.classList.contains('popup')) {
-    const isOpen = document.querySelector('.popup_active');
-    closeForm(isOpen);
-  }
+popupContainer.addEventListener("click", function (event) {
+  event.stopPropagation();
 });
 
-//функция очистки ошибок при закрытии
-function resetError() {
-  const nameSpanError = document.getElementById('name-error');
-  const professioinSpanError = document.getElementById('proffession-error');
+document.addEventListener("keydown", (evt) => {
+  closeFormESC(evt);
+});
 
-  if(nameSpanError.textContent != '' && professioinSpanError.textContent != '') {
-    nameSpanError.textContent = '';
-    professioinSpanError.textContent = '';
-  }
-  else if(professioinSpanError.textContent != '') {
-    professioinSpanError.textContent = '';
-  }
-  else if (nameSpanError.textContent != '') {
-    nameSpanError.textContent = '';
-  }
 
-  if(nameInput.classList.contains('popup__input_type_error') && jobInput.classList.contains('popup__input_type_error')) {
-    nameInput.classList.remove('popup__input_type_error');
-    jobInput.classList.remove('popup__input_type_error');
-  }
-  else if(jobInput.classList.contains('popup__input_type_error')) {
-    jobInput.classList.remove('popup__input_type_error');
-  }
-  else if(nameInput.classList.contains('popup__input_type_error')) {
-    nameInput.classList.remove('popup__input_type_error');
-  }
-}

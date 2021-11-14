@@ -30,6 +30,7 @@ const isInvalid = (inputList) => {
   })
 };
 
+//данные не валидны
 const isNotInputValue = (inputList) => {
   return inputList.every(inputElement => {
     return inputElement.value.length === 0;
@@ -99,3 +100,5 @@ enableValidation({
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
 });
+
+
