@@ -1,4 +1,5 @@
 .popup__error{
+  width: 358px;
   margin: 0.3125rem 0;
   height: 25px;
   font-size: 0.75rem;
@@ -9,4 +10,10 @@
 
 .popup__input-error:last-of-type {
   margin-bottom: 0.75rem;
+}
+
+@media screen and (max-width: 625px) {
+  .popup__error {
+    width: 238px;
+  }
 }
